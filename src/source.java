@@ -63,14 +63,6 @@ public class source
 				return a.compare(b);
 			}
 				});
-		for (Juice ts:juices)
-		{
-			for (String s:ts.x)
-			{
-				out3.print(s+" ");
-			}
-			out3.println();
-		}
 		Iterator it1=juices.iterator(),it2=juices.iterator();
 		if (it2.hasNext())
 			it2.next();
@@ -80,7 +72,7 @@ public class source
 			if (!((Juice)it1.next()).equals((Juice)it2.next()))
 					count++;
 		}
-		out3.printf("\r\n%d", count);
+		out3.printf("%d", count);
 		out3.close();
 	}
 	void input() throws IOException
