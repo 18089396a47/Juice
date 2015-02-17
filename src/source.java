@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class source
+public class source extends Thread
 {
 	class Juice
 	{
@@ -47,15 +47,10 @@ public class source
 	TreeSet<String> components;
 	public static void main(String[] args) throws IOException
 	{
-		new source().run();
+		new source().run1();
 	}
-	void run() throws IOException
+	public void run()
 	{
-		out3=new PrintWriter(new FileWriter("juice3.out"));
-		juices=new ArrayList<Juice>();
-		components=new TreeSet<String>();
-		input();
-		print();
 		juices.sort(new Comparator<Juice>()
 				{
 			public int compare(Juice a,Juice b)
@@ -63,6 +58,18 @@ public class source
 				return a.compare(b);
 			}
 				});
+	}
+	void run1() throws IOException
+	{
+		out3=new PrintWriter(new FileWriter("juice3.out"));
+		juices=new ArrayList<Juice>();
+		components=new TreeSet<String>();
+		input();
+		print();
+		while (this.isAlive())
+			try {
+				this.sleep(100);
+			} catch (InterruptedException e) {}
 		Iterator it1=juices.iterator(),it2=juices.iterator();
 		if (it2.hasNext())
 			it2.next();
@@ -100,6 +107,7 @@ public class source
 			juices.add(juiceTmp);
 			tmp=in.readLine();
 		}
+		this.start();
 		in.close();
 		out1.close();
 	}
